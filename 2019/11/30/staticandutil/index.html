@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/avatar.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Finisky Garden" type="application/atom+xml">
+  <meta name="google-site-verification" content="kyf5nmL2uJHFZ6hSn99Tu9c0HJ42NZNBW5K2d6anXXo">
+  <meta name="msvalidate.01" content="C59CFAE56C0B1EAACC5C92210400B7AD">
+  <meta name="baidu-site-verification" content="XG2u6IqsZb">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://finisky.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="今天先聊聊static方法的那些事儿，然后再引出static使用的“极致” util&#x2F;helper类，说说它们的问题。">
+<meta name="keywords" content="C#,Software Engineering,OOP,Design Pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈static和util&#x2F;helper类">
+<meta property="og:url" content="http:&#x2F;&#x2F;finisky.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;staticandutil&#x2F;index.html">
+<meta property="og:site_name" content="Finisky Garden">
+<meta property="og:description" content="今天先聊聊static方法的那些事儿，然后再引出static使用的“极致” util&#x2F;helper类，说说它们的问题。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-11T02:06:48.953Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://finisky.github.io/2019/11/30/staticandutil/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>谈谈static和util/helper类 | Finisky Garden</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96909088-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96909088-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Finisky Garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Easy doesn't enter into grown-up life.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-楼市分析">
+
+    <a href="/categories/realestate/custom/" rel="section"><i class="fa fa-fw fa-line-chart"></i>楼市分析</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://finisky.github.io/2019/11/30/staticandutil/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="finisky">
+      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Finisky Garden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          谈谈static和util/helper类
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-30 12:25:56" itemprop="dateCreated datePublished" datetime="2019-11-30T12:25:56+08:00">2019-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-11 10:06:48" itemprop="dateModified" datetime="2019-12-11T10:06:48+08:00">2019-12-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C#</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/30/staticandutil/" class="post-meta-item leancloud_visitors" data-flag-title="谈谈static和util/helper类" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/11/30/staticandutil/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/30/staticandutil/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>今天先聊聊static方法的那些事儿，然后再引出static使用的“极致” util/helper类，说说它们的问题。</p>
+<a id="more"></a>
+<h1 id="static方法什么时候用？"><a href="#static方法什么时候用？" class="headerlink" title="static方法什么时候用？"></a>static方法什么时候用？</h1><p>简单说在面向对象的场景下，绝大多数情况都不应使用static方法。这里有一些关于static使用场景的讨论：<br><a href="https://stackoverflow.com/questions/33705976/when-should-i-use-static-methods" target="_blank" rel="noopener">When should I use static methods?</a></p>
+<p><a href="https://stackoverflow.com/questions/2671496/java-when-to-use-static-methods" target="_blank" rel="noopener">Java: when to use static methods</a></p>
+<p>上面讨论总结一下可以归纳为两点：</p>
+<ol>
+<li>逻辑上不和某个类实例绑定，如Singleton中的GetInstance()</li>
+<li>方法比较轻量，不涉及类变量，最好是一个“纯函数”，调用之后没有副作用</li>
+</ol>
+<p>其中第一点是最值得注意之处。</p>
+<p>下面两个例子可以使用static方法：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">Sigmoid</span>(<span class="params"><span class="keyword">double</span> x, <span class="keyword">double</span> upper = <span class="number">10.0</span>, <span class="keyword">double</span> lower = <span class="number">-10.0</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= upper)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.999999</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (x &lt;= lower)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.000001</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (<span class="number">1.0</span> + Math.Exp(-x));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">UnixTimeStamp</span>(<span class="params">DateTime time</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">long</span>)time.Subtract(<span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>)).TotalSeconds;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一些情况必须使用static方法的，比如C#中的extention method实现 <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods" target="_blank" rel="noopener">Extension Methods (C# Programming Guide)</a>:<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">ListShuffle</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> IList&lt;T&gt; Shuffle&lt;T&gt;(<span class="keyword">this</span> IList&lt;T&gt; list)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> list.OrderBy(x =&gt; <span class="keyword">new</span> Random().Next()).ToList();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="不该用static方法"><a href="#不该用static方法" class="headerlink" title="不该用static方法"></a>不该用static方法</h1><p>static方法一定程度上与面向对象的思想是对立的，设想一种极端情况，如果一个程序中全是static方法，那么它将退化成面向过程的程序，且很有可能组织不得当。比如下例：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">QueryValidation</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> HttpClient Client = <span class="keyword">new</span> HttpClient();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> Url = <span class="string">"http://xxx/api"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;<span class="keyword">bool</span>&gt; <span class="title">IsValidQueryAsync</span>(<span class="params"><span class="keyword">string</span> query</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> requestMessage = <span class="keyword">new</span> HttpRequestMessage(HttpMethod.Post, Url)</span><br><span class="line">        &#123;</span><br><span class="line">            Content = <span class="keyword">new</span> StringContent(JsonConvert.SerializeObject(query))</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">using</span> (<span class="keyword">var</span> cancelTokenSource = <span class="keyword">new</span> CancellationTokenSource(timeoutInMs))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">var</span> result = <span class="keyword">await</span> Client.SendAsync(requestMessage, cancelTokenSource.Token).ConfigureAwait(<span class="literal">false</span>);</span><br><span class="line">                ...</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IsValidQueryAsync()就不应使用static方法，首先逻辑上也看不出该方法应属于类的全体而非类的实例。其次方法不轻量，远程调用，且用到了静态类变量。</p>
+<p>因此，不用static方法，将类名改为QueryValidator，其他类聚合了它并用QueryValidator.IsValidQueryAsync()方法来验证Query更为合理。</p>
+<h2 id="关于性能"><a href="#关于性能" class="headerlink" title="关于性能"></a>关于性能</h2><p>99.999%以上的情况下可以忽略。<a href="http://www.blackwasp.co.uk/SpeedTestStaticInstance.aspx" target="_blank" rel="noopener">Speed Test: Static vs Instance Methods</a>，这里有前人做过测试，二者之间的性能差异微乎其微，不应作为是否static的首要考虑因素。</p>
+<h1 id="避免使用Util-Helper类"><a href="#避免使用Util-Helper类" class="headerlink" title="避免使用Util/Helper类"></a>避免使用Util/Helper类</h1><p>为什么聊static方法会谈到Util/Helper类呢？因为曾在代码库见过一些所谓Util，把各种很复杂的方法都堆在里面，都写为static方法“方便”调用。一个类堆了上千行，里面什么东西都有。</p>
+<p>这种Util美其名曰“代码复用”，实际上是偷懒，没有仔细思考类之间的逻辑抽象。面向对象的代码复用有许多方式，继承、聚合都可以，用static方法复用的方式最省脑子，但上千行的Util基本可以判断为anti-pattern。</p>
+<p>这么做的思想很朴素：A和B需要复用一段代码，于是就将共用的代码变成static放在公用的Util类中，然后C和D又要利用一段代码，算了，不再新建一个类了，也static后放在公用的Util类中。再看编译器报错了，在static方法中使用了非static的变量，得，把这变量也static了……</p>
+<p>这种Util有许多问题，第一，多个类调用Util类中的静态方法，那么这些类都增加了额外依赖，与面向对象希望达到的解耦目的不符。第二，Util类完全不内聚，代码垃圾场，违反了SOLID原则中的单一职责原则。</p>
+<p>我个人认为Util Class并非绝对禁用，只是大部分情况下使用者没有想清楚为什么要用，是否有更优雅的替代方案。还有一个问题就是命名，如果整个项目中只有一个Util类，即使里面所有函数都是static纯函数，那它也不符合单一职责原则。解决方案：1. 将这些方法放进使用它的类中 2. 将方法分类，分拆成更内聚的具体类并起一个合适的名称，比如DateTimeConverter之类。</p>
+<p>这里也有一些关于Util Class的讨论：<br><a href="https://www.vojtechruzicka.com/avoid-utility-classes/" target="_blank" rel="noopener">Avoid Utility Classes</a></p>
+<p><a href="https://lostechies.com/chrismissal/2009/06/01/anti-patterns-and-worst-practices-utils-class/" target="_blank" rel="noopener">Anti-Patterns and Worst Practices – Utils Class</a></p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>在面向对象程序中尽量不用static。当不确定是否要用时，不用。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/Software-Engineering/" rel="tag"># Software Engineering</a>
+              <a href="/tags/OOP/" rel="tag"># OOP</a>
+              <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/27/upgradenext/" rel="prev" title="升级Hexo和NexT主题趟坑小记">
+      <i class="fa fa-chevron-left"></i> 升级Hexo和NexT主题趟坑小记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/01/kaifenghua/" rel="next" title="开封人的开封话">
+      开封人的开封话 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <div>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#static方法什么时候用？"><span class="nav-number">1.</span> <span class="nav-text">static方法什么时候用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不该用static方法"><span class="nav-number">2.</span> <span class="nav-text">不该用static方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于性能"><span class="nav-number">2.1.</span> <span class="nav-text">关于性能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免使用Util-Helper类"><span class="nav-number">3.</span> <span class="nav-text">避免使用Util/Helper类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="finisky"
+      src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">finisky</p>
+  <div class="site-description" itemprop="description">Easy doesn't enter into grown-up life.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+      </div>
+
+      
+<div>
+  <ul class="sidebar-related-title">
+    <li>
+      Related Posts
+    </li>
+  </ul>
+
+  <!--noindex-->
+  <div class="sidebar-related">
+    <ol>
+      <li><a href="/2019/12/09/interfacederivedparameter/" rel="bookmark"><span class="nav-text">参数或返回值为派生类的接口或抽象方法</span></a></li>
+      <li><a href="/2019/10/15/factorydiff/" rel="bookmark"><span class="nav-text">工厂模式和抽象工厂模式的区别</span></a></li>
+      <li><a href="/2019/02/04/solid/" rel="bookmark"><span class="nav-text">软件设计中的SOLID原则</span></a></li>
+      <li><a href="/2019/11/24/nulloremptylist/" rel="bookmark"><span class="nav-text">返回null还是空List?</span></a></li>
+      <li><a href="/2019/11/20/registerfactoryapplication/" rel="bookmark"><span class="nav-text">RegisterFactory(InjectionFactory)的应用</span></a></li>
+    </ol>
+  </div>
+  <!--/noindex-->
+</div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">finisky</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=dan6IxkRMXwPv0hks3I2pKEk-MdYXbMMI')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'dan6IxkRMXwPv0hks3I2pKEk-MdYXbMMI',
+            'X-LC-Key': 'P2MOv4zxDuo7PiNelAkOk2aK',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://finisky.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://finisky.github.io/2019/11/30/staticandutil/",
+            identifier: "2019/11/30/staticandutil/",
+            title: "谈谈static和util/helper类"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://finisky.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/avatar.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Finisky Garden" type="application/atom+xml">
+  <meta name="google-site-verification" content="kyf5nmL2uJHFZ6hSn99Tu9c0HJ42NZNBW5K2d6anXXo">
+  <meta name="msvalidate.01" content="C59CFAE56C0B1EAACC5C92210400B7AD">
+  <meta name="baidu-site-verification" content="XG2u6IqsZb">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://finisky.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="stunnel简介stunnel是一个开源跨平台进行通信加密的软件。它可以对原生不支持加密通信的服务(如FTP, Telnet等)在上层提供加密功能，而无须修改这些服务的代码。 stunnel分为client和server两种不同的角色，二者之间的通信使用X509证书进行加密。在初装时，stunnel会自动生成一个自签名的证书用于加密，但它更推荐用户使用自己生成的证书。">
+<meta name="keywords" content="Networking,OpenSSL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stunnel配置实例">
+<meta property="og:url" content="http:&#x2F;&#x2F;finisky.github.io&#x2F;2019&#x2F;07&#x2F;21&#x2F;stunnel&#x2F;index.html">
+<meta property="og:site_name" content="Finisky Garden">
+<meta property="og:description" content="stunnel简介stunnel是一个开源跨平台进行通信加密的软件。它可以对原生不支持加密通信的服务(如FTP, Telnet等)在上层提供加密功能，而无须修改这些服务的代码。 stunnel分为client和server两种不同的角色，二者之间的通信使用X509证书进行加密。在初装时，stunnel会自动生成一个自签名的证书用于加密，但它更推荐用户使用自己生成的证书。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-11T02:06:48.945Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://finisky.github.io/2019/07/21/stunnel/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>stunnel配置实例 | Finisky Garden</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96909088-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96909088-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Finisky Garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Easy doesn't enter into grown-up life.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-楼市分析">
+
+    <a href="/categories/realestate/custom/" rel="section"><i class="fa fa-fw fa-line-chart"></i>楼市分析</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://finisky.github.io/2019/07/21/stunnel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="finisky">
+      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Finisky Garden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          stunnel配置实例
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-21 08:50:06" itemprop="dateCreated datePublished" datetime="2019-07-21T08:50:06+08:00">2019-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-11 10:06:48" itemprop="dateModified" datetime="2019-12-11T10:06:48+08:00">2019-12-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Networking/" itemprop="url" rel="index">
+                    <span itemprop="name">Networking</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/07/21/stunnel/" class="post-meta-item leancloud_visitors" data-flag-title="stunnel配置实例" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/07/21/stunnel/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/21/stunnel/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="stunnel简介"><a href="#stunnel简介" class="headerlink" title="stunnel简介"></a>stunnel简介</h1><p><a href="https://www.stunnel.org/" target="_blank" rel="noopener">stunnel</a>是一个开源跨平台进行通信加密的软件。它可以对原生不支持加密通信的服务(如FTP, Telnet等)在上层提供加密功能，而无须修改这些服务的代码。</p>
+<p>stunnel分为client和server两种不同的角色，二者之间的通信使用X509证书进行加密。在初装时，stunnel会自动生成一个自签名的证书用于加密，但它更推荐用户使用自己生成的证书。<br><a id="more"></a></p>
+<h1 id="stunnel证书生成"><a href="#stunnel证书生成" class="headerlink" title="stunnel证书生成"></a>stunnel证书生成</h1><p>用OpenSSL生成自签名的证书其实非常容易，在已安装OpenSSL的Linux环境下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem</span></span><br></pre></td></tr></table></figure><br>上述命令中唯一需要注意的是-days 365参数，声明该自签名证书的有效期，可自行按需更改。运行后需要键入一些信息，可一路回车使用默认值。</p>
+<p>输出内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Generating a 2048 bit RSA private key</span><br><span class="line">..+++</span><br><span class="line">.............................+++</span><br><span class="line">unable to write &apos;random state&apos;</span><br><span class="line">writing new private key to &apos;stunnel.pem&apos;</span><br><span class="line">-----</span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &apos;.&apos;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:</span><br><span class="line">State or Province Name (full name) [Some-State]:</span><br><span class="line">Locality Name (eg, city) []:</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:</span><br><span class="line">Organizational Unit Name (eg, section) []:</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:</span><br><span class="line">Email Address []:</span><br></pre></td></tr></table></figure><br>此时，证书已经在当前目录生成好了，包括了私钥和证书，cat stunnel.pem显示它大概长这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDFfPlpkHBRLadK</span><br><span class="line">wJP9+bfRflQzmGUAYiy6DaXPzYuHboVAKblTGqinMD9tqSWbTG6nbA+d30xc2eFM</span><br><span class="line">+4YiXgvMCHh+uszimcRZHAOmePCN4AjJTOcT8WmSBdyiq4OT6a0URPhWpE7pCDqQ</span><br><span class="line">KPa394vJbXK+T1UfGVDLEOiNXGsohx3CVEnTlSSo3BaODNpM2zUn3JQZSZY80Vxt</span><br><span class="line">bfsg2dxP/ssoS62YPqsTNn7sZvkDR8AIR+Q4tW4CZXyu0nrOwcvSx3f44QPiIMj6</span><br><span class="line">dflVtLXj6Wfjrzjx2Q9ZWJTZRetgmvFru77p9fmdnbA450hdy87moIUxdrMI9etN</span><br><span class="line">v7JE71CpAgMBAAECggEAbMPdoVQZZ7wbDMJvP0tO/6Pxv9DIn6NyOq3VilML63Tl</span><br><span class="line">EmdoV+qwxBOAe2bS/Wrk7nRHTY1zwxeETB+iyj69hIuNwU4kFRDW4LTbFc45vgmL</span><br><span class="line">DUK7aXJl0DRGRZjsiIQD/MvXcfBgPVt41XiaGMvPQwpyTXnnyY7pvkz7pw8lPVXk</span><br><span class="line">pa7vp6JlLFiEFgmqAAdE5/iLyg8ud1Xwrkq2qV5PPQGS2+8VZ/RSDhtXRtKzZLCJ</span><br><span class="line">2cLbh8u7tgNYHh84hN3Jk5RVH2/59nN/Kp7c8U04DZCMNfY78kIkMVsphJQF05+f</span><br><span class="line">KVWVtFSnRot/XEyVcPtoJKxcBLrZbZWOXLrmokToeQKBgQDyJ6S2xVAiXCerCnQ8</span><br><span class="line">UfW7aXMJgBFW5ZEReK13YABvLStY8yqW0AOL8XNH8BSY7Z2HiQ0F2Zo+SiI4J53a</span><br><span class="line">LGbmhsZ/je81X48OlYQatzcctsnZ99+YCHoR6hWsxaVNnjYA0uwGBeDjQqhA7+hd</span><br><span class="line">1gki6znFvjrLB5FjNl3SqrrgYwKBgQDQx454jcQA0bFsgMoNXUL6R/hJ4aRywil3</span><br><span class="line">/gwvk+6g/NxTtn+frQ3XqfVy6rfXJSt45UXshhBd2g7+jnHYn1wcyzeXsMx9XiVB</span><br><span class="line">uFp9Cb5fWhYGBgIHd4xsAv2MiqFSmDYjKQqDL7q7AidsiN8+EednSFo3qW3vsNP8</span><br><span class="line">JwinNTzqgwJ/RvFWUDV+RJK7DGEDrKhWVZGPIjli2xJmbbftGgwGFIwnJugWkhhe</span><br><span class="line">8aDLJUgwwJzcidic+BnIFnehjtIMbN6VRvQ1Mylh60ETqDIlga4rdz4V5MW5u9C/</span><br><span class="line">8n+h2fwNca/oIlWo0Brox6u/n0apzNPn2VMQmd4hW1ncPjSvSAi8twKBgQCrDtXs</span><br><span class="line">cDrncOetvtfNm1wFNHJ6FiZm4C6Z4cyaLtqVjJf4/s4SRffRe69fOHDoFcxIgZGI</span><br><span class="line">+U7vlnoylwMwOWF/NgGWh4UEMt7Tufhp+lHATk89IC8JbyneVZToUa1bvtqcdEPo</span><br><span class="line">uHKGRn2Gr545fPHb7av9bxRkDr2hG1o7paMDgQKBgQDxTTM8IzFCNW5QwOHAKigl</span><br><span class="line">3PMzHL7us1/AN5mNKH18CBuJB52KBuGBi9k2VhWQcSLQGkwtO6sb+zRp9e0m8SM6</span><br><span class="line">b6D1Kci7FOtHIffOm1EomEB8XSIQr44cOseWNRJOccTXgYsshBT2PKCIKYxyIIdW</span><br><span class="line">u7tI7RFevK+10e/jC0TvDA==</span><br><span class="line">-----END PRIVATE KEY-----</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDXTCCAkWgAwIBAgIJAL27yfp8t3ofMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV</span><br><span class="line">BAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBX</span><br><span class="line">aWRnaXRzIFB0eSBMdGQwHhcNMTkwNzIxMDIxMTI1WhcNMjAwNzIwMDIxMTI1WjBF</span><br><span class="line">MQswCQYDVQQGEwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYSW50</span><br><span class="line">ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB</span><br><span class="line">CgKCAQEAxXz5aZBwUS2nSsCT/fm30X5UM5hlAGIsug2lz82Lh26FQCm5UxqopzA/</span><br><span class="line">baklm0xup2wPnd9MXNnhTPuGIl4LzAh4frrM4pnEWRwDpnjwjeAIyUznE/FpkgXc</span><br><span class="line">oquDk+mtFET4VqRO6Qg6kCj2t/eLyW1yvk9VHxlQyxDojVxrKIcdwlRJ05UkqNwW</span><br><span class="line">jgzaTNs1J9yUGUmWPNFcbW37INncT/7LKEutmD6rEzZ+7Gb5A0fACEfkOLVuAmV8</span><br><span class="line">rtJ6zsHL0sd3+OED4iDI+nX5VbS14+ln46848dkPWViU2UXrYJrxa7u+6fX5nZ2w</span><br><span class="line">OOdIXcvO5qCFMXazCPXrTb+yRO9QqQIDAQABo1AwTjAdBgNVHQ4EFgQUSX6484h5</span><br><span class="line">FuRhJi13z0LSFMmxh1MwHwYDVR0jBBgwFoAUSX6484h5FuRhJi13z0LSFMmxh1Mw</span><br><span class="line">DAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAlM7Bt8Vp//mtUBmLxiQI</span><br><span class="line">XLTThPAxjgGvMaoyhPGRajuENpQuQlqlAw92kw8hMAYxx5I1PGRSx4Hdok1RWaTo</span><br><span class="line">cmbio6VhID3iDWpBHShv8ZlfAILnBq6RXNc+/c6nOIsnB8/wt43XxdVmEiHK/PmX</span><br><span class="line">jdtJV9IW9doavXLb36iOh6Z5EvJFvegJsUB4Vjbtvz8Ukr9vEviWCaMbinFueT1G</span><br><span class="line">BIw7mhyUrQhVHTAapQ9d2JvecQyolzxvDsUMU1qedTyowsoJ/eCs9uu/cHrae3Va</span><br><span class="line">YGRSJ1Un/k9LzbXiliAOVpSVAMbwHfJZtSVLn0b2GRqHO5SKSnPAtABCCbifuLvZ</span><br><span class="line">9g==</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure><br>此时需要将此生成的证书放在一个稳妥的目录下，如下文所提到的默认配置文件目录。</p>
+<h1 id="stunnel配置说明"><a href="#stunnel配置说明" class="headerlink" title="stunnel配置说明"></a>stunnel配置说明</h1><p>stunnel的默认配置文件存放目录：</p>
+<ul>
+<li>Linux：/etc/stunnel</li>
+<li>Windows：C:\Program Files (x86)\stunnel\config<h2 id="Server配置"><a href="#Server配置" class="headerlink" title="Server配置"></a>Server配置</h2>典型的Server配置如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cert = /etc/stunnel/stunnel.pem # server使用的证书</span><br><span class="line">key = /etc/stunnel/stunnel.pem # server使用的私钥</span><br><span class="line">CAfile = /etc/stunnel/stunnel.pem # 验证client合法性的证书</span><br><span class="line">verify = 3 # 验证方式，下面详述</span><br><span class="line">client = no # server配置成no</span><br><span class="line"></span><br><span class="line">[telnet]</span><br><span class="line">accept = 1234 # [HOST:]PORT, 不指定HOST, 则监听所有IPv4地址</span><br><span class="line">connect = 127.0.0.1:6789 # [HOST:]PORT</span><br><span class="line"></span><br><span class="line">[ftp]</span><br><span class="line">accept = 12345</span><br><span class="line">connect = 127.0.0.1:67890</span><br></pre></td></tr></table></figure>
+其中verify这个参数用于指定对对方的验证方式：</li>
+<li>不指定：不验证客户端出示的证书。</li>
+<li>verify = 1：如果对方出示了证书，则验证；不出示则通过。</li>
+<li>verify = 2：证书的CA必须与CAfile指定的匹配，否则不通过。</li>
+<li>verify = 3：证书的CA与证书内容必须与CAfile指定的匹配，否则不通过。</li>
+</ul>
+<p>对于自签名的证书，建议使用verify = 3的方式，然后需要通过安全的方式线下将证书分发到client。</p>
+<h2 id="Client配置"><a href="#Client配置" class="headerlink" title="Client配置"></a>Client配置</h2><p>对应的client配置示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cert = /etc/stunnel/stunnel.pem # client使用的证书，与server端CAfile一致才能通过验证</span><br><span class="line">client = yes # client配置成yes</span><br><span class="line"></span><br><span class="line">[telnet]</span><br><span class="line">accept = 127.0.0.1:6789 # [HOST:]PORT</span><br><span class="line">connect = &#123;serverip&#125;:1234 # 替换serverip</span><br></pre></td></tr></table></figure><br>此处不再设置verify参数，一般无须验证server的合法性。</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><a href="https://www.stunnel.org/" target="_blank" rel="noopener">stunnel</a></p>
+<p><a href="https://www.stunnel.org/howto.html" target="_blank" rel="noopener">stunnel HOWTO</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Networking/" rel="tag"># Networking</a>
+              <a href="/tags/OpenSSL/" rel="tag"># OpenSSL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/20/selenium/" rel="prev" title="Selenium爬取网页实战">
+      <i class="fa fa-chevron-left"></i> Selenium爬取网页实战
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/23/cloudservicekeyset/" rel="next" title="Azure CloudService Deployment "Keyset does not exist"">
+      Azure CloudService Deployment "Keyset does not exist" <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <div>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#stunnel简介"><span class="nav-number">1.</span> <span class="nav-text">stunnel简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stunnel证书生成"><span class="nav-number">2.</span> <span class="nav-text">stunnel证书生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stunnel配置说明"><span class="nav-number">3.</span> <span class="nav-text">stunnel配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Server配置"><span class="nav-number">3.1.</span> <span class="nav-text">Server配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Client配置"><span class="nav-number">3.2.</span> <span class="nav-text">Client配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="finisky"
+      src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">finisky</p>
+  <div class="site-description" itemprop="description">Easy doesn't enter into grown-up life.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+      </div>
+
+      
+<div>
+  <ul class="sidebar-related-title">
+    <li>
+      Related Posts
+    </li>
+  </ul>
+
+  <!--noindex-->
+  <div class="sidebar-related">
+    <ol>
+      <li><a href="/2019/11/17/aimdapp/" rel="bookmark"><span class="nav-text">AIMD算法在工程上的应用</span></a></li>
+      <li><a href="/2019/02/16/tcpthreeway/" rel="bookmark"><span class="nav-text">TCP为什么需要三次握手四次挥手</span></a></li>
+    </ol>
+  </div>
+  <!--/noindex-->
+</div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">finisky</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=dan6IxkRMXwPv0hks3I2pKEk-MdYXbMMI')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'dan6IxkRMXwPv0hks3I2pKEk-MdYXbMMI',
+            'X-LC-Key': 'P2MOv4zxDuo7PiNelAkOk2aK',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://finisky.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://finisky.github.io/2019/07/21/stunnel/",
+            identifier: "2019/07/21/stunnel/",
+            title: "stunnel配置实例"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://finisky.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>
