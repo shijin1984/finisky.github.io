@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/avatar.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/avatar.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/avatar.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Finisky Garden" type="application/atom+xml">
+  <meta name="google-site-verification" content="kyf5nmL2uJHFZ6hSn99Tu9c0HJ42NZNBW5K2d6anXXo">
+  <meta name="msvalidate.01" content="C59CFAE56C0B1EAACC5C92210400B7AD">
+  <meta name="baidu-site-verification" content="XG2u6IqsZb">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://finisky.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="最近爬取几个页面总是失败，遇到如下错误：1# The HTTP request to the remote WebDriver server for URL http:&#x2F;&#x2F;localhost:xxx&#x2F; session timed out after 60 seconds. 后来发现原因是页面加载缓慢，debug发现页面其实已经在浏览器中成功渲染，只是还在等待一些后台javascript加载完毕，然">
+<meta name="keywords" content="C#,crawler,selenium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="selenium禁止页面加载javascript">
+<meta property="og:url" content="http:&#x2F;&#x2F;finisky.github.io&#x2F;2019&#x2F;12&#x2F;18&#x2F;seleniumpageloadstrategy&#x2F;index.html">
+<meta property="og:site_name" content="Finisky Garden">
+<meta property="og:description" content="最近爬取几个页面总是失败，遇到如下错误：1# The HTTP request to the remote WebDriver server for URL http:&#x2F;&#x2F;localhost:xxx&#x2F; session timed out after 60 seconds. 后来发现原因是页面加载缓慢，debug发现页面其实已经在浏览器中成功渲染，只是还在等待一些后台javascript加载完毕，然">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-18T16:03:52.056Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://finisky.github.io/2019/12/18/seleniumpageloadstrategy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>selenium禁止页面加载javascript | Finisky Garden</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96909088-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96909088-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Finisky Garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">Easy doesn't enter into grown-up life.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-楼市分析">
+
+    <a href="/categories/realestate/custom/" rel="section"><i class="fa fa-fw fa-line-chart"></i>楼市分析</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://finisky.github.io/2019/12/18/seleniumpageloadstrategy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="finisky">
+      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Finisky Garden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          selenium禁止页面加载javascript
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-18 23:58:15" itemprop="dateCreated datePublished" datetime="2019-12-18T23:58:15+08:00">2019-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-19 00:03:52" itemprop="dateModified" datetime="2019-12-19T00:03:52+08:00">2019-12-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C#</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/12/18/seleniumpageloadstrategy/" class="post-meta-item leancloud_visitors" data-flag-title="selenium禁止页面加载javascript" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/12/18/seleniumpageloadstrategy/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/18/seleniumpageloadstrategy/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近爬取几个页面总是失败，遇到如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># The HTTP request to the remote WebDriver server for URL http://localhost:xxx/ session timed out after 60 seconds.</span><br></pre></td></tr></table></figure></p>
+<p>后来发现原因是页面加载缓慢，debug发现页面其实已经在浏览器中成功渲染，只是还在等待一些后台javascript加载完毕，然后超时报错。</p>
+<p>考虑到许多javascript都是广告、统计等一些附加内容，用selenium爬取页面时仅需要其中的html，无须等待所有javascript加载完毕。因此，想看看如何禁止ChromeDriver加载javascript，仅下载html。</p>
+<p>搜了下”Selenium Disable JavaScript in ChromeDriver”，发现了几种方案，最终用Page load strategy解决问题，小结一下各种方案的坑。</p>
+<a id="more"></a>
+<h1 id="禁用JavaScript-不好使"><a href="#禁用JavaScript-不好使" class="headerlink" title="禁用JavaScript(不好使)"></a>禁用JavaScript(不好使)</h1><p>让Chrome禁用javascript应该是最直接的想法，搜了一堆文章，如：<br><a href="https://stackoverflow.com/questions/38301993/how-to-disable-java-script-in-chrome-driver-selenium-python" target="_blank" rel="noopener">How to disable java script in Chrome Driver Selenium Python</a><br><a href="https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/6672" target="_blank" rel="noopener">Disable JavaScript ChromeDriver #6672</a></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line">options.AddArgument(<span class="string">"disable-javascript"</span>);</span><br></pre></td></tr></table></figure>
+<p>事实证明，没有一个方案可以真正禁用js，<strong>不好使</strong>。而且这里AddArgument()中使用的是string，而如何找到可用的string列表本身就是个问题。</p>
+<h1 id="设置页面加载超时-不好使"><a href="#设置页面加载超时-不好使" class="headerlink" title="设置页面加载超时(不好使)"></a>设置页面加载超时(不好使)</h1><p>另一个想法是当页面加载缓慢时让它超时，然后继续执行后续的代码解析已下载的html。<br><a href="https://stackoverflow.com/questions/10606703/selenium-webdriver-how-to-set-page-load-timeout-using-c-sharp" target="_blank" rel="noopener">Selenium WebDriver - How to set Page Load Timeout using C#</a></p>
+<p>设置页面加载超时的语法找了半天，因为许多文章都是过时的，找到目前可用的语法如下：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(<span class="number">30</span>);</span><br></pre></td></tr></table></figure></p>
+<p>但页面超时之后并不像想像当中那样继续执行后续代码，而是抛出了异常进入了catch块，所以并不能解析已加载的html。</p>
+<h1 id="用ExecuteScript-不好使"><a href="#用ExecuteScript-不好使" class="headerlink" title="用ExecuteScript(不好使)"></a>用ExecuteScript(不好使)</h1><p>于是又找到了<br><a href="https://allinonescript.com/index.php/questions/9731291/questions/9731291/how-do-i-set-the-selenium-webdriver-get-timeout" target="_blank" rel="noopener">How do I set the selenium webdriver get timeout?</a></p>
+<p>本来使用用driver.Navigate().GoToUrl(url)来加载页面，这里提示可以用ExecuteScript()替代它解决问题：<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//driver.Navigate().GoToUrl(url);</span></span><br><span class="line"></span><br><span class="line">driver.ExecuteScript(<span class="string">$"window.location.href='<span class="subst">&#123;url&#125;</span>'"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>试验后发现失败率少了一些，不过执行ExecuteScript并不像描述的那样马上返回，依然会出现加载失败的情况。感觉二者在本质上没有区别，没能get到此方案的优越性。</p>
+<h1 id="设置页面加载策略"><a href="#设置页面加载策略" class="headerlink" title="设置页面加载策略"></a>设置页面加载策略</h1><p>参考如下两篇文章：<br><a href="https://stackoverflow.com/questions/43734797/page-load-strategy-for-chrome-driver-updated-till-selenium-v3-12-0" target="_blank" rel="noopener">Page load strategy for Chrome driver (Updated till Selenium v3.12.0)</a></p>
+<p><a href="https://w3c.github.io/webdriver/#dfn-page-load-strategy" target="_blank" rel="noopener">WebDriver W3C - Page load strategy</a></p>
+<p>Page load strategy有三种：默认是normal，即等着全部页面加载完毕；none的话是把html下载完毕；eager模式则中庸一些，html下载并解析完毕。原文参考：</p>
+<hr>
+<ol>
+<li><strong><code>normal</code></strong><br>This stategy causes Selenium to wait for the full page loading (html content and subresources downloaded and parsed).</li>
+<li><strong><code>eager</code></strong><br>This stategy causes Selenium to wait for the DOMContentLoaded event (html content downloaded and parsed only).</li>
+<li><strong><code>none</code></strong><br>This strategy causes Selenium to return immediately after the initial page content is fully received (html content downloaded).</li>
+</ol>
+<hr>
+<p>为达到“禁用javascript”，经尝试<strong>eager</strong>策略最为合适。none的话，使用FindElementByXXX()方法常常定位不到需要查找的内容，有些过于激进。eager策略完美解决禁用js的问题。代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line">options.PageLoadStrategy = PageLoadStrategy.Eager;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> (<span class="keyword">var</span> driver = <span class="keyword">new</span> ChromeDriver(driverService, options))</span><br><span class="line">&#123;</span><br><span class="line">     driver.Navigate().GoToUrl(url);</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/crawler/" rel="tag"># crawler</a>
+              <a href="/tags/selenium/" rel="tag"># selenium</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/15/interfaceorabstractclass/" rel="prev" title="interface还是abstract class?">
+      <i class="fa fa-chevron-left"></i> interface还是abstract class?
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <div>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#禁用JavaScript-不好使"><span class="nav-number">1.</span> <span class="nav-text">禁用JavaScript(不好使)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置页面加载超时-不好使"><span class="nav-number">2.</span> <span class="nav-text">设置页面加载超时(不好使)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用ExecuteScript-不好使"><span class="nav-number">3.</span> <span class="nav-text">用ExecuteScript(不好使)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置页面加载策略"><span class="nav-number">4.</span> <span class="nav-text">设置页面加载策略</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="finisky"
+      src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">finisky</p>
+  <div class="site-description" itemprop="description">Easy doesn't enter into grown-up life.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+      </div>
+
+      
+<div>
+  <ul class="sidebar-related-title">
+    <li>
+      Related Posts
+    </li>
+  </ul>
+
+  <!--noindex-->
+  <div class="sidebar-related">
+    <ol>
+      <li><a href="/2019/11/08/chromedriver/" rel="bookmark"><span class="nav-text">selenium ChromeDriver不匹配问题</span></a></li>
+      <li><a href="/2019/07/20/selenium/" rel="bookmark"><span class="nav-text">Selenium爬取网页实战</span></a></li>
+      <li><a href="/2019/01/31/await/" rel="bookmark"><span class="nav-text">C# async/await编程模型的执行逻辑解析</span></a></li>
+      <li><a href="/2019/12/09/interfacederivedparameter/" rel="bookmark"><span class="nav-text">参数或返回值为派生类的接口或抽象方法</span></a></li>
+      <li><a href="/2019/11/24/nulloremptylist/" rel="bookmark"><span class="nav-text">返回null还是空List?</span></a></li>
+    </ol>
+  </div>
+  <!--/noindex-->
+</div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">finisky</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=dan6IxkRMXwPv0hks3I2pKEk-MdYXbMMI')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'dan6IxkRMXwPv0hks3I2pKEk-MdYXbMMI',
+            'X-LC-Key': 'P2MOv4zxDuo7PiNelAkOk2aK',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://finisky.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://finisky.github.io/2019/12/18/seleniumpageloadstrategy/",
+            identifier: "2019/12/18/seleniumpageloadstrategy/",
+            title: "selenium禁止页面加载javascript"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://finisky.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+<script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>

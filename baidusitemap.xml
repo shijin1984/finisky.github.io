@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://finisky.github.io/2019/12/18/seleniumpageloadstrategy/</loc>
+    <lastmod>2019-12-18</lastmod>
+  </url>  <url>
+    <loc>http://finisky.github.io/2019/11/08/chromedriver/</loc>
+    <lastmod>2019-12-18</lastmod>
+  </url>  <url>
+    <loc>http://finisky.github.io/2019/07/20/selenium/</loc>
+    <lastmod>2019-12-18</lastmod>
+  </url>  <url>
     <loc>http://finisky.github.io/2019/01/23/ljdailydata/</loc>
     <lastmod>2019-12-18</lastmod>
   </url>  <url>
@@ -19,10 +28,10 @@
     <loc>http://finisky.github.io/2019/11/27/upgradenext/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/11/30/staticandutil/</loc>
+    <loc>http://finisky.github.io/2019/11/25/cspronounciation/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/11/25/cspronounciation/</loc>
+    <loc>http://finisky.github.io/2019/11/30/staticandutil/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/12/01/kaifenghua/</loc>
@@ -34,25 +43,22 @@
     <loc>http://finisky.github.io/2019/01/24/fontawesomeissue.en/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/11/08/chromedriver/</loc>
+    <loc>http://finisky.github.io/2019/10/30/freeproxy/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/10/30/freeproxyen/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/10/30/freeproxy/</loc>
+    <loc>http://finisky.github.io/2019/11/24/nulloremptylist/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/11/24/nulloremptylist/</loc>
+    <loc>http://finisky.github.io/2019/11/19/registerfactoryexp.en/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/11/19/registerfactoryexp/</loc>
-    <lastmod>2019-12-11</lastmod>
-  </url>  <url>
-    <loc>http://finisky.github.io/2019/11/19/registerfactoryexp.en/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/11/17/taskcontinuewith/</loc>
@@ -91,10 +97,10 @@
     <loc>http://finisky.github.io/2019/07/21/stunnel/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/10/15/twocolumnpic/</loc>
+    <loc>http://finisky.github.io/2019/02/17/taskfromresult/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/02/17/taskfromresult/</loc>
+    <loc>http://finisky.github.io/2019/10/15/twocolumnpic/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/08/11/dreamoftheredchamber/</loc>
@@ -107,9 +113,6 @@
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/04/14/computerquotes/</loc>
-    <lastmod>2019-12-11</lastmod>
-  </url>  <url>
-    <loc>http://finisky.github.io/2019/07/20/selenium/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/05/12/statsemicolon/</loc>
