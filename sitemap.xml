@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://finisky.github.io/2019/01/23/ljdailydata/</loc>
+    
+    <lastmod>2019-12-19T02:28:17.074Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://finisky.github.io/2018/12/31/dailyvol/</loc>
+    
+    <lastmod>2019-12-19T02:28:17.070Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://finisky.github.io/2019/12/18/seleniumpageloadstrategy/</loc>
     
     <lastmod>2019-12-18T16:03:52.056Z</lastmod>
@@ -19,20 +33,6 @@
     <loc>http://finisky.github.io/2019/07/20/selenium/</loc>
     
     <lastmod>2019-12-18T13:20:30.644Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://finisky.github.io/2019/01/23/ljdailydata/</loc>
-    
-    <lastmod>2019-12-18T10:28:18.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://finisky.github.io/2018/12/31/dailyvol/</loc>
-    
-    <lastmod>2019-12-18T10:28:18.062Z</lastmod>
     
   </url>
   
@@ -65,14 +65,14 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/11/25/cspronounciation/</loc>
+    <loc>http://finisky.github.io/2019/11/30/staticandutil/</loc>
     
     <lastmod>2019-12-11T02:06:48.953Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/11/30/staticandutil/</loc>
+    <loc>http://finisky.github.io/2019/11/25/cspronounciation/</loc>
     
     <lastmod>2019-12-11T02:06:48.953Z</lastmod>
     
@@ -135,14 +135,14 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/11/19/registerfactoryexp.en/</loc>
+    <loc>http://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
     
     <lastmod>2019-12-11T02:06:48.949Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
+    <loc>http://finisky.github.io/2019/11/19/registerfactoryexp.en/</loc>
     
     <lastmod>2019-12-11T02:06:48.949Z</lastmod>
     
@@ -191,13 +191,6 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/07/23/cloudservicekeyset/</loc>
-    
-    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://finisky.github.io/2019/10/15/factorydiff/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
@@ -226,7 +219,7 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/02/17/taskfromresult/</loc>
+    <loc>http://finisky.github.io/2019/02/04/solid/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
     
@@ -240,7 +233,7 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/02/04/solid/</loc>
+    <loc>http://finisky.github.io/2019/02/17/taskfromresult/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
     
@@ -248,6 +241,13 @@
   
   <url>
     <loc>http://finisky.github.io/2019/10/15/twocolumnpic/</loc>
+    
+    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://finisky.github.io/2019/07/23/cloudservicekeyset/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
     
