@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://finisky.github.io/2019/01/23/ljdailydata/</loc>
-    <lastmod>2019-12-24</lastmod>
+    <lastmod>2019-12-25</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2018/12/31/dailyvol/</loc>
-    <lastmod>2019-12-24</lastmod>
+    <lastmod>2019-12-25</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/12/20/resharperredcolor/</loc>
     <lastmod>2019-12-20</lastmod>
@@ -76,16 +76,16 @@
     <loc>http://finisky.github.io/2019/12/05/sidebarrelatedposts/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/07/23/cloudservicekeyset/</loc>
-    <lastmod>2019-12-11</lastmod>
-  </url>  <url>
     <loc>http://finisky.github.io/2019/01/31/await/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/10/15/factorydiff/</loc>
+    <loc>http://finisky.github.io/2019/07/23/cloudservicekeyset/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/01/20/fontawesomeissue/</loc>
+    <lastmod>2019-12-11</lastmod>
+  </url>  <url>
+    <loc>http://finisky.github.io/2019/10/15/factorydiff/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/04/24/ndcg/</loc>
