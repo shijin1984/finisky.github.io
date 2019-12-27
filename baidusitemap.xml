@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://finisky.github.io/2018/12/31/dailyvol/</loc>
-    <lastmod>2019-12-26</lastmod>
-  </url>  <url>
     <loc>http://finisky.github.io/2019/01/23/ljdailydata/</loc>
-    <lastmod>2019-12-26</lastmod>
+    <lastmod>2019-12-27</lastmod>
+  </url>  <url>
+    <loc>http://finisky.github.io/2018/12/31/dailyvol/</loc>
+    <lastmod>2019-12-27</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/12/20/resharperredcolor/</loc>
     <lastmod>2019-12-20</lastmod>
@@ -46,10 +46,10 @@
     <loc>http://finisky.github.io/2019/01/24/fontawesomeissue.en/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/10/30/freeproxyen/</loc>
+    <loc>http://finisky.github.io/2019/10/30/freeproxy/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/10/30/freeproxy/</loc>
+    <loc>http://finisky.github.io/2019/10/30/freeproxyen/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/11/24/nulloremptylist/</loc>
@@ -91,9 +91,6 @@
     <loc>http://finisky.github.io/2019/04/24/ndcg/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>http://finisky.github.io/2019/04/26/sapiens/</loc>
-    <lastmod>2019-12-11</lastmod>
-  </url>  <url>
     <loc>http://finisky.github.io/2019/02/04/solid/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
@@ -104,6 +101,9 @@
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/10/15/twocolumnpic/</loc>
+    <lastmod>2019-12-11</lastmod>
+  </url>  <url>
+    <loc>http://finisky.github.io/2019/04/26/sapiens/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>http://finisky.github.io/2019/08/11/dreamoftheredchamber/</loc>
