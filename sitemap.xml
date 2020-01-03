@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://finisky.github.io/2020/01/03/cudnnstatusexecutionfailed/</loc>
+    
+    <lastmod>2020-01-03T09:05:38.550Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://finisky.github.io/2019/01/23/ljdailydata/</loc>
     
     <lastmod>2020-01-03T02:28:17.055Z</lastmod>
@@ -142,13 +149,6 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
-    
-    <lastmod>2019-12-11T02:06:48.949Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://finisky.github.io/2019/11/24/nulloremptylist/</loc>
     
     <lastmod>2019-12-11T02:06:48.949Z</lastmod>
@@ -156,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://finisky.github.io/2019/11/19/registerfactoryexp/</loc>
+    <loc>http://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
     
     <lastmod>2019-12-11T02:06:48.949Z</lastmod>
     
@@ -164,6 +164,13 @@
   
   <url>
     <loc>http://finisky.github.io/2019/11/19/registerfactoryexp.en/</loc>
+    
+    <lastmod>2019-12-11T02:06:48.949Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://finisky.github.io/2019/11/19/registerfactoryexp/</loc>
     
     <lastmod>2019-12-11T02:06:48.949Z</lastmod>
     
