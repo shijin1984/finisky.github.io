@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://finisky.github.io/2020/01/22/memorymetrics.en/</loc>
+    
+    <lastmod>2020-01-22T11:49:36.269Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://finisky.github.io/2019/01/23/ljdailydata/</loc>
     
     <lastmod>2020-01-22T10:28:15.975Z</lastmod>
@@ -198,20 +205,6 @@
   </url>
   
   <url>
-    <loc>https://finisky.github.io/2019/11/17/taskcontinuewith/</loc>
-    
-    <lastmod>2019-12-11T02:06:48.949Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://finisky.github.io/2019/11/24/updatehexo/</loc>
-    
-    <lastmod>2019-12-11T02:06:48.949Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://finisky.github.io/2019/11/05/luzhu/</loc>
     
     <lastmod>2019-12-11T02:06:48.949Z</lastmod>
@@ -226,16 +219,16 @@
   </url>
   
   <url>
-    <loc>https://finisky.github.io/2019/10/15/factorydiff/</loc>
+    <loc>https://finisky.github.io/2019/11/17/taskcontinuewith/</loc>
     
-    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    <lastmod>2019-12-11T02:06:48.949Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://finisky.github.io/2019/01/20/fontawesomeissue/</loc>
+    <loc>https://finisky.github.io/2019/11/24/updatehexo/</loc>
     
-    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    <lastmod>2019-12-11T02:06:48.949Z</lastmod>
     
   </url>
   
@@ -254,6 +247,27 @@
   </url>
   
   <url>
+    <loc>https://finisky.github.io/2019/10/15/factorydiff/</loc>
+    
+    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://finisky.github.io/2019/01/20/fontawesomeissue/</loc>
+    
+    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://finisky.github.io/2019/04/24/ndcg/</loc>
+    
+    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://finisky.github.io/2019/04/26/sapiens/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
@@ -262,6 +276,13 @@
   
   <url>
     <loc>https://finisky.github.io/2019/02/04/solid/</loc>
+    
+    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://finisky.github.io/2019/08/11/dreamoftheredchamber/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
     
@@ -283,20 +304,6 @@
   
   <url>
     <loc>https://finisky.github.io/2019/10/15/twocolumnpic/</loc>
-    
-    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://finisky.github.io/2019/04/24/ndcg/</loc>
-    
-    <lastmod>2019-12-11T02:06:48.945Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://finisky.github.io/2019/08/11/dreamoftheredchamber/</loc>
     
     <lastmod>2019-12-11T02:06:48.945Z</lastmod>
     
@@ -331,14 +338,14 @@
   </url>
   
   <url>
-    <loc>https://finisky.github.io/2019/02/16/tcpthreeway/</loc>
+    <loc>https://finisky.github.io/2019/02/24/customizedcategory/</loc>
     
     <lastmod>2019-12-11T02:06:48.941Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://finisky.github.io/2019/02/24/customizedcategory/</loc>
+    <loc>https://finisky.github.io/2019/02/16/tcpthreeway/</loc>
     
     <lastmod>2019-12-11T02:06:48.941Z</lastmod>
     
