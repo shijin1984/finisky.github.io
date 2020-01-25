@@ -50,16 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="Easy doesn&amp;apos;t enter into grown-up life.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Finisky Garden">
-<meta property="og:url" content="https:&#x2F;&#x2F;finisky.github.io&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="If you use Visual Studio 2017 and create an .NET Core projects the first time, the following errors might appear: The current .NET SDK does not support targeting .NET Standard 2.0.  Either target .NET">
+<meta name="keywords" content="C#,.NET Core,Visual Studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VS2017 .NET Core Projects Load Failed">
+<meta property="og:url" content="https:&#x2F;&#x2F;finisky.github.io&#x2F;2020&#x2F;01&#x2F;25&#x2F;vsnetcoreloadfailed.en&#x2F;index.html">
 <meta property="og:site_name" content="Finisky Garden">
-<meta property="og:description" content="Easy doesn&amp;apos;t enter into grown-up life.">
+<meta property="og:description" content="If you use Visual Studio 2017 and create an .NET Core projects the first time, the following errors might appear: The current .NET SDK does not support targeting .NET Standard 2.0.  Either target .NET">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-25T04:47:11.736Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://finisky.github.io/archives/">
+<link rel="canonical" href="https://finisky.github.io/2020/01/25/vsnetcoreloadfailed.en/">
 
 
 <script id="page-configurations">
@@ -67,9 +69,9 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 <script type="text/javascript">
@@ -81,7 +83,7 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
 </script>
 
 
-  <title>Archive | Finisky Garden</title>
+  <title>VS2017 .NET Core Projects Load Failed | Finisky Garden</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96909088-2"></script>
     <script>
@@ -202,440 +204,141 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://finisky.github.io/2020/01/25/vsnetcoreloadfailed.en/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="finisky">
+      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Finisky Garden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          VS2017 .NET Core Projects Load Failed
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-25 12:29:58 / Modified: 12:47:11" itemprop="dateCreated datePublished" datetime="2020-01-25T12:29:58+08:00">2020-01-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C#</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/01/25/vsnetcoreloadfailed.en/" class="post-meta-item leancloud_visitors" data-flag-title="VS2017 .NET Core Projects Load Failed" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">OK! 49 posts in total. Keep on posting.</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/01/25/vsnetcoreloadfailed.en/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/25/vsnetcoreloadfailed.en/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2020</h2>
+        <p>If you use Visual Studio 2017 and create an .NET Core projects the first time, the following errors might appear:</p>
+<blockquote><p>The current .NET SDK does not support targeting .NET Standard 2.0.  Either target .NET Standard 1.6 or lower, or use a version of the .NET SDK that supports .NET Standard 2.0.    XXXProject    C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\Sdks\Microsoft.NET.Sdk\build\Microsoft.NET.TargetFrameworkInference.targets</p>
+</blockquote>
+<p>Another related issue is .NET Core project load failed. Both errors point out that the corresponding .NET SDK is missing.</p>
+<p>If you follow the instructions to install .NET Core SDK with a random version from here: <a href="https://aka.ms/dotnet-download" target="_blank" rel="noopener">https://aka.ms/dotnet-download</a> . Most likely that the issue cannot be resolved.</p>
+<a id="more"></a>
+<h1 id="Check-Installed-SDKs"><a href="#Check-Installed-SDKs" class="headerlink" title="Check Installed SDKs"></a>Check Installed SDKs</h1><p>Use <code>dotnet --info</code>:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> dotnet --info</span></span><br><span class="line">.NET Core SDK (reflecting any global.json):</span><br><span class="line"> Version:   2.2.401</span><br><span class="line"> Commit:    729b316c13</span><br><span class="line"></span><br><span class="line">Runtime Environment:</span><br><span class="line"> OS Name:     Windows</span><br><span class="line"> OS Version:  10.0.14393</span><br><span class="line"> OS Platform: Windows</span><br><span class="line"> RID:         win10-x64</span><br><span class="line"> Base Path:   C:\Program Files\dotnet\sdk\2.2.401\</span><br><span class="line"></span><br><span class="line">Host (useful for support):</span><br><span class="line">  Version: 2.2.8</span><br><span class="line">  Commit:  b9aa1abc51</span><br><span class="line"></span><br><span class="line">.NET Core SDKs installed:</span><br><span class="line">  2.1.202 [C:\Program Files\dotnet\sdk]</span><br><span class="line">  2.1.511 [C:\Program Files\dotnet\sdk]</span><br><span class="line">  2.2.207 [C:\Program Files\dotnet\sdk]</span><br><span class="line">  2.2.300 [C:\Program Files\dotnet\sdk]</span><br><span class="line">  2.2.401 [C:\Program Files\dotnet\sdk]</span><br><span class="line"></span><br><span class="line">.NET Core runtimes installed:</span><br><span class="line">  Microsoft.AspNetCore.All 2.1.15 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All]</span><br><span class="line">  Microsoft.AspNetCore.All 2.2.5 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All]</span><br><span class="line">  Microsoft.AspNetCore.All 2.2.6 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All]</span><br><span class="line">  Microsoft.AspNetCore.All 2.2.8 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.All]</span><br><span class="line">  Microsoft.AspNetCore.App 2.1.15 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]</span><br><span class="line">  Microsoft.AspNetCore.App 2.2.5 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]</span><br><span class="line">  Microsoft.AspNetCore.App 2.2.6 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]</span><br><span class="line">  Microsoft.AspNetCore.App 2.2.8 [C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App]</span><br><span class="line">  Microsoft.NETCore.App 2.0.9 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]</span><br><span class="line">  Microsoft.NETCore.App 2.1.15 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]</span><br><span class="line">  Microsoft.NETCore.App 2.2.5 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]</span><br><span class="line">  Microsoft.NETCore.App 2.2.6 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]</span><br><span class="line">  Microsoft.NETCore.App 2.2.8 [C:\Program Files\dotnet\shared\Microsoft.NETCore.App]</span><br><span class="line"></span><br><span class="line">To install additional .NET Core runtimes or SDKs:</span><br><span class="line">  https://aka.ms/dotnet-download</span><br></pre></td></tr></table></figure></p>
+<p>It seems that there are many existing .NET Core 2.2.x SDKs. Why it still doesn’t work?</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="Short-Answer"><a href="#Short-Answer" class="headerlink" title="Short Answer"></a>Short Answer</h2><ul>
+<li>Go to the following link to install SDK:<br><a href="https://dotnet.microsoft.com/download/visual-studio-sdks" target="_blank" rel="noopener"># Download .NET SDKs for Visual Studio</a></li>
+<li>Restart Visual Studio and rebuild the project</li>
+</ul>
+<h2 id="Long-Answer"><a href="#Long-Answer" class="headerlink" title="Long Answer"></a>Long Answer</h2><p><a href="https://stackoverflow.com/questions/45732236/the-current-net-sdk-does-not-support-targeting-net-standard-2-0-error-in-visua" target="_blank" rel="noopener"># The current .NET SDK does not support targeting .NET Standard 2.0 error in Visual Studio 2017 update 15.3</a></p>
+<p>The above stackoverflow url has an answer which suggests to install .NET SDK from the following link (resolve the issue but don’t know why):<br><a href="https://dotnet.microsoft.com/download/visual-studio-sdks" target="_blank" rel="noopener"># Download .NET SDKs for Visual Studio</a></p>
+<p>Compare the SDK download url with the offical .NET Core SDK site: <a href="https://dotnet.microsoft.com/download/dotnet-core/2.2" target="_blank" rel="noopener"># Download .NET Core 2.2</a>, you will find that they are the same:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dotnet.microsoft.com/download/dotnet-core/thank-you/sdk-2.2.110-windows-x64-installer</span><br></pre></td></tr></table></figure></p>
+<p>Looks magic, right? So I guess the reason is that <strong>Visual Studio 2017 is only compatible with a specific version of .NET Core SDK, regardless which version your project actually used</strong>. Fortunately the first site provides a compatible SDK version list for different VS versions, install from that site would resolve the problem.</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-25T12:29:58+08:00"
-              content="2020-01-25">
-          01-25
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C#</a>
+              <a href="/tags/NET-Core/" rel="tag"># .NET Core</a>
+              <a href="/tags/Visual-Studio/" rel="tag"># Visual Studio</a>
+          </div>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/01/25/vsnetcoreloadfailed.en/" itemprop="url">
-            <span itemprop="name">VS2017 .NET Core Projects Load Failed</span>
-          </a>
-      </h3>
+        
 
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-22T19:41:32+08:00"
-              content="2020-01-22">
-          01-22
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/01/22/memorymetrics.en/" itemprop="url">
-            <span itemprop="name">Memory Related Metrics in C#</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-06T20:45:35+08:00"
-              content="2020-01-06">
-          01-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/01/06/k8sdashboardlanguage/" itemprop="url">
-            <span itemprop="name">Kubernetes Dashboard语言设置为英文</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-06T18:52:52+08:00"
-              content="2020-01-06">
-          01-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/01/06/classadviceimpossible/" itemprop="url">
-            <span itemprop="name">TypeError Class advice impossible in Python3</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-06T10:49:23+08:00"
-              content="2020-01-06">
-          01-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/01/06/jupyterdlopen/" itemprop="url">
-            <span itemprop="name">Jupyter dlopen cannot load any more object with static TLS</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-03T17:05:21+08:00"
-              content="2020-01-03">
-          01-03
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/01/03/cudnnstatusexecutionfailed/" itemprop="url">
-            <span itemprop="name">RuntimeError cuDNN error CUDNN_STATUS_EXECUTION_FAILED Solution</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h2 class="collection-header">2019</h2>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/22/memorymetrics.en/" rel="prev" title="Memory Related Metrics in C#">
+      <i class="fa fa-chevron-left"></i> Memory Related Metrics in C#
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-31T19:30:23+08:00"
-              content="2019-12-31">
-          12-31
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/31/k8sinvalidobject/" itemprop="url">
-            <span itemprop="name">invalid object doesn't have additional properties error</span>
-          </a>
-      </h3>
-
-    </header>
+      </footer>
+    
   </article>
+  
+  
+  
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-20T20:59:57+08:00"
-              content="2019-12-20">
-          12-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/20/resharperredcolor/" itemprop="url">
-            <span itemprop="name">ReSharper Marked Classes in Red Color Issue</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-18T23:58:15+08:00"
-              content="2019-12-18">
-          12-18
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/18/seleniumpageloadstrategy/" itemprop="url">
-            <span itemprop="name">selenium禁止页面加载javascript</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-15T11:36:10+08:00"
-              content="2019-12-15">
-          12-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/15/interfaceorabstractclass/" itemprop="url">
-            <span itemprop="name">interface还是abstract class?</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-11T20:21:40+08:00"
-              content="2019-12-11">
-          12-11
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/11/migrategithubpages/" itemprop="url">
-            <span itemprop="name">迁移Hexo博客到GitHub Pages</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-09T22:11:45+08:00"
-              content="2019-12-09">
-          12-09
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/09/interfacederivedparameter/" itemprop="url">
-            <span itemprop="name">参数或返回值为派生类的接口或抽象方法</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-05T22:39:00+08:00"
-              content="2019-12-05">
-          12-05
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/05/sidebarrelatedposts/" itemprop="url">
-            <span itemprop="name">Hexo NexT主题侧边栏展示相关文章</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-01T12:33:39+08:00"
-              content="2019-12-01">
-          12-01
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/01/kaifenghua/" itemprop="url">
-            <span itemprop="name">开封人的开封话</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-30T12:25:56+08:00"
-              content="2019-11-30">
-          11-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/30/staticandutil/" itemprop="url">
-            <span itemprop="name">谈谈static和util/helper类</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-27T11:48:52+08:00"
-              content="2019-11-27">
-          11-27
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/27/upgradenext/" itemprop="url">
-            <span itemprop="name">升级Hexo和NexT主题趟坑小记</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-25T19:53:55+08:00"
-              content="2019-11-25">
-          11-25
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/25/cspronounciation/" itemprop="url">
-            <span itemprop="name">CS常见读错名词集锦</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-24T12:52:57+08:00"
-              content="2019-11-24">
-          11-24
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/24/nulloremptylist/" itemprop="url">
-            <span itemprop="name">返回null还是空List?</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-24T11:13:17+08:00"
-              content="2019-11-24">
-          11-24
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/24/updatehexo/" itemprop="url">
-            <span itemprop="name">How to Update Hexo?</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-20T18:35:31+08:00"
-              content="2019-11-20">
-          11-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/20/registerfactoryapplication/" itemprop="url">
-            <span itemprop="name">RegisterFactory(InjectionFactory)的应用</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-
-    </div>
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
 
 
           </div>
           
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
         </div>
           
@@ -662,6 +365,7 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Check-Installed-SDKs"><span class="nav-number">1.</span> <span class="nav-text">Check Installed SDKs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Short-Answer"><span class="nav-number">2.1.</span> <span class="nav-text">Short Answer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Long-Answer"><span class="nav-number">2.2.</span> <span class="nav-text">Long Answer</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -707,6 +411,25 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
       </div>
 
       
+<div>
+  <ul class="sidebar-related-title">
+    <li>
+      Related Posts
+    </li>
+  </ul>
+
+  <!--noindex-->
+  <div class="sidebar-related">
+    <ol>
+      <li><a href="/2020/01/22/memorymetrics.en/" rel="bookmark"><span class="nav-text">Memory Related Metrics in C#</span></a></li>
+      <li><a href="/2019/01/31/await/" rel="bookmark"><span class="nav-text">C# async/await编程模型的执行逻辑解析</span></a></li>
+      <li><a href="/2019/11/08/chromedriver/" rel="bookmark"><span class="nav-text">selenium ChromeDriver不匹配问题</span></a></li>
+      <li><a href="/2019/12/09/interfacederivedparameter/" rel="bookmark"><span class="nav-text">参数或返回值为派生类的接口或抽象方法</span></a></li>
+      <li><a href="/2019/11/24/nulloremptylist/" rel="bookmark"><span class="nav-text">返回null还是空List?</span></a></li>
+    </ol>
+  </div>
+  <!--/noindex-->
+</div>
 
 
     </div>
@@ -888,6 +611,27 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://finisky.github.io/2020/01/25/vsnetcoreloadfailed.en/",
+            identifier: "2020/01/25/vsnetcoreloadfailed.en/",
+            title: "VS2017 .NET Core Projects Load Failed"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://finisky.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
 </script>
 
 <script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
