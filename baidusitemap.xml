@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://finisky.github.io/2019/01/23/ljdailydata/</loc>
-    <lastmod>2020-01-24</lastmod>
+    <lastmod>2020-01-25</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2018/12/31/dailyvol/</loc>
+    <lastmod>2020-01-25</lastmod>
+  </url>  <url>
+    <loc>https://finisky.github.io/2019/04/14/computerquotes/</loc>
     <lastmod>2020-01-24</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2020/01/22/memorymetrics.en/</loc>
-    <lastmod>2020-01-22</lastmod>
+    <lastmod>2020-01-24</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2020/01/06/k8sdashboardlanguage/</loc>
     <lastmod>2020-01-06</lastmod>
@@ -49,10 +52,10 @@
     <loc>https://finisky.github.io/2019/11/27/upgradenext/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/11/30/staticandutil/</loc>
+    <loc>https://finisky.github.io/2019/11/25/cspronounciation/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/11/25/cspronounciation/</loc>
+    <loc>https://finisky.github.io/2019/11/30/staticandutil/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2019/12/01/kaifenghua/</loc>
@@ -70,10 +73,10 @@
     <loc>https://finisky.github.io/2019/10/30/freeproxyen/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
+    <loc>https://finisky.github.io/2019/11/24/nulloremptylist/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/11/24/nulloremptylist/</loc>
+    <loc>https://finisky.github.io/2019/11/20/registerfactoryapplication/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2019/11/19/registerfactoryexp/</loc>
@@ -100,10 +103,10 @@
     <loc>https://finisky.github.io/2019/07/23/cloudservicekeyset/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/01/20/fontawesomeissue/</loc>
+    <loc>https://finisky.github.io/2019/10/15/factorydiff/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/10/15/factorydiff/</loc>
+    <loc>https://finisky.github.io/2019/01/20/fontawesomeissue/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2019/04/24/ndcg/</loc>
@@ -118,10 +121,10 @@
     <loc>https://finisky.github.io/2019/07/21/stunnel/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/02/17/taskfromresult/</loc>
+    <loc>https://finisky.github.io/2019/10/15/twocolumnpic/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
-    <loc>https://finisky.github.io/2019/10/15/twocolumnpic/</loc>
+    <loc>https://finisky.github.io/2019/02/17/taskfromresult/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2019/08/11/dreamoftheredchamber/</loc>
@@ -131,9 +134,6 @@
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2019/07/28/ceilinglamp/</loc>
-    <lastmod>2019-12-11</lastmod>
-  </url>  <url>
-    <loc>https://finisky.github.io/2019/04/14/computerquotes/</loc>
     <lastmod>2019-12-11</lastmod>
   </url>  <url>
     <loc>https://finisky.github.io/2019/05/12/statsemicolon/</loc>
