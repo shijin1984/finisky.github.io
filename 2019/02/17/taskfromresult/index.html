@@ -50,6 +50,7 @@
   };
 </script>
 
+<script data-ad-client="ca-pub-3463064276789789" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <meta name="description" content="实际工程中有时需要将同步方法包装在异步方法之中。比如一个类实现了异步接口，而实际实现可能是本地计算的同步操作，也可能是需要HTTP请求的异步操作。对于前者，如果实现中没有await关键字，编译器会提示该方法缺少await运算符，将以同步方式运行。将二者统一的解决方案是使用Task.FromResult将结果包装成一个已完成的Task返回。举例：">
 <meta name="keywords" content="C#,异步编程,await,async">
 <meta property="og:type" content="article">
