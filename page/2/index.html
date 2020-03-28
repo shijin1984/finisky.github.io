@@ -208,6 +208,217 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://finisky.github.io/2020/01/06/jupyterdlopen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="finisky">
+      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Finisky Garden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/06/jupyterdlopen/" class="post-title-link" itemprop="url">Jupyter dlopen cannot load any more object with static TLS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-06 10:49:23" itemprop="dateCreated datePublished" datetime="2020-01-06T10:49:23+08:00">2020-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/01/06/jupyterdlopen/" class="post-meta-item leancloud_visitors" data-flag-title="Jupyter dlopen cannot load any more object with static TLS" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/01/06/jupyterdlopen/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/06/jupyterdlopen/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>A wierd problem that execute “import torch” in bash works but when you run it in Jupyter notebook:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ImportError Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-4-8ba1970b60ce&gt; in &lt;module&gt;</span><br><span class="line"> 6 import random</span><br><span class="line"> 7 </span><br><span class="line">----&gt; 8  import torch</span><br><span class="line"> 9 import torch.nn as nn</span><br><span class="line"> 10 </span><br><span class="line"></span><br><span class="line">~/miniconda3/envs/tf/lib/python3.6/site-packages/torch/__init__.py in &lt;module&gt;</span><br><span class="line"> 79 del _dl_flags</span><br><span class="line"> 80 </span><br><span class="line">---&gt; 81  from torch._C import *</span><br><span class="line"> 82 </span><br><span class="line"> 83 __all__ += [name for name in dir(_C)</span><br><span class="line"></span><br><span class="line">ImportError: dlopen: cannot load any more object with static TLS</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/06/jupyterdlopen/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://finisky.github.io/2020/01/03/cudnnstatusexecutionfailed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="finisky">
+      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Finisky Garden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/03/cudnnstatusexecutionfailed/" class="post-title-link" itemprop="url">RuntimeError cuDNN error CUDNN_STATUS_EXECUTION_FAILED Solution</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-03 17:05:21" itemprop="dateCreated datePublished" datetime="2020-01-03T17:05:21+08:00">2020-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/01/03/cudnnstatusexecutionfailed/" class="post-meta-item leancloud_visitors" data-flag-title="RuntimeError cuDNN error CUDNN_STATUS_EXECUTION_FAILED Solution" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/01/03/cudnnstatusexecutionfailed/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/03/cudnnstatusexecutionfailed/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED</span><br></pre></td></tr></table></figure>
+<p>When you encountered the above issue and Google it, you will find lots of discussions. Unfortunately, very rare of them are useful and work.</p>
+<p>Actually, the root cause is <strong>pytorch/cuda/python compatibility issue</strong>. </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/03/cudnnstatusexecutionfailed/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://finisky.github.io/2019/12/31/k8sinvalidobject/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -231,10 +442,16 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-31 19:30:23 / Modified: 19:33:20" itemprop="dateCreated datePublished" datetime="2019-12-31T19:30:23+08:00">2019-12-31</time>
+              <time title="Created: 2019-12-31 19:30:23" itemprop="dateCreated datePublished" datetime="2019-12-31T19:30:23+08:00">2019-12-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -329,10 +546,16 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-20 20:59:57 / Modified: 12:08:03" itemprop="dateCreated datePublished" datetime="2019-12-20T20:59:57+08:00">2019-12-20</time>
+              <time title="Created: 2019-12-20 20:59:57" itemprop="dateCreated datePublished" datetime="2019-12-20T20:59:57+08:00">2019-12-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -435,7 +658,7 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-19 00:03:52" itemprop="dateModified" datetime="2019-12-19T00:03:52+08:00">2019-12-19</time>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -534,10 +757,16 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-15 11:36:10 / Modified: 12:02:07" itemprop="dateCreated datePublished" datetime="2019-12-15T11:36:10+08:00">2019-12-15</time>
+              <time title="Created: 2019-12-15 11:36:10" itemprop="dateCreated datePublished" datetime="2019-12-15T11:36:10+08:00">2019-12-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -632,10 +861,16 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-11 20:21:40 / Modified: 20:28:12" itemprop="dateCreated datePublished" datetime="2019-12-11T20:21:40+08:00">2019-12-11</time>
+              <time title="Created: 2019-12-11 20:21:40" itemprop="dateCreated datePublished" datetime="2019-12-11T20:21:40+08:00">2019-12-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -738,7 +973,7 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-15 11:37:59" itemprop="dateModified" datetime="2019-12-15T11:37:59+08:00">2019-12-15</time>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -843,7 +1078,7 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-11 10:06:48" itemprop="dateModified" datetime="2019-12-11T10:06:48+08:00">2019-12-11</time>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -948,7 +1183,7 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-11 10:06:48" itemprop="dateModified" datetime="2019-12-11T10:06:48+08:00">2019-12-11</time>
+                <time title="Modified: 2020-03-28 19:25:11" itemprop="dateModified" datetime="2020-03-28T19:25:11+08:00">2020-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1020,215 +1255,6 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://finisky.github.io/2019/11/30/staticandutil/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="finisky">
-      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Finisky Garden">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/30/staticandutil/" class="post-title-link" itemprop="url">谈谈static和util/helper类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-30 12:25:56" itemprop="dateCreated datePublished" datetime="2019-11-30T12:25:56+08:00">2019-11-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-11 10:06:48" itemprop="dateModified" datetime="2019-12-11T10:06:48+08:00">2019-12-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C#</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/30/staticandutil/" class="post-meta-item leancloud_visitors" data-flag-title="谈谈static和util/helper类" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/11/30/staticandutil/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/30/staticandutil/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天先聊聊static方法的那些事儿，然后再引出static使用的“极致” util/helper类，说说它们的问题。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/30/staticandutil/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://finisky.github.io/2019/11/27/upgradenext/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="finisky">
-      <meta itemprop="description" content="Easy doesn't enter into grown-up life.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Finisky Garden">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/27/upgradenext/" class="post-title-link" itemprop="url">升级Hexo和NexT主题趟坑小记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-27 11:48:52" itemprop="dateCreated datePublished" datetime="2019-11-27T11:48:52+08:00">2019-11-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-11 17:54:10" itemprop="dateModified" datetime="2019-12-11T17:54:10+08:00">2019-12-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/27/upgradenext/" class="post-meta-item leancloud_visitors" data-flag-title="升级Hexo和NexT主题趟坑小记" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/11/27/upgradenext/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/27/upgradenext/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>事情源起于心血来潮把Hexo从v3.9.0升级到了v4.0.0，Hexo本身的升级倒是不难，它由npm管理，改下package.json，运行npm update即可。但之后发现在archives的分页显示有问题……</p>
-<p>一路趟坑的感觉如图：<br><img src="https://linux1290.blob.core.windows.net/finiskyimages/marsh.gif" width="50%"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/27/upgradenext/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1281,20 +1307,20 @@ var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=wi
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
