@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://finisky.github.io/2019/01/23/ljdailydata/</loc>
+    
+    <lastmod>2020-03-29T02:28:15.900Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://finisky.github.io/2018/12/31/dailyvol/</loc>
+    
+    <lastmod>2020-03-29T02:28:15.896Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://finisky.github.io/2020/03/28/fluorescentlamptoled/</loc>
     
     <lastmod>2020-03-28T11:56:05.287Z</lastmod>
@@ -369,20 +383,6 @@
     <loc>https://finisky.github.io/2020/03/28/serverrefusedourkey.en/</loc>
     
     <lastmod>2020-03-28T09:55:11.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://finisky.github.io/2019/01/23/ljdailydata/</loc>
-    
-    <lastmod>2020-03-28T09:01:13.089Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://finisky.github.io/2018/12/31/dailyvol/</loc>
-    
-    <lastmod>2020-03-28T09:01:13.061Z</lastmod>
     
   </url>
   
